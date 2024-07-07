@@ -6,7 +6,7 @@ animales = [
     'zebra', 'panda', 'koala', 'canguro', 'oso', 'lobo',
     'zorro', 'ciervo', 'rinoceronte', 'hipopotamo', 'buho',
     'aguila', 'flamenco', 'pinguino', 'tortuga',
-    'delfín', 'ballena', 'tiburon', 'cocodrilo', 'serpiente',
+    'delfin', 'ballena', 'tiburon', 'cocodrilo', 'serpiente',
     'rana', 'murcielago', 'ardilla'
 ]
 
@@ -156,15 +156,39 @@ def main():
 
     if grupo == '1':
         print('\nPerfecto, has decidido descubrir cuál es el animal oculto en la palabra secreta.')
-        palabra_al_azar, palabra_oculta = modo_facil(animales)
+        print('Tambien puedes elegir juegar en modo EXPERTO o PRINCIPIANTE.')
+
+        opcion = input(
+            'Quieres jugar al modo EXPERTO (Si/No)? > ').lower().strip()
+
+        if opcion == 'si':
+            palabra_al_azar, palabra_oculta = modo_dificil(animales)
+        else:
+            palabra_al_azar, palabra_oculta = modo_facil(animales)
 
     elif grupo == '2':
         print('\nPerfecto, has decidido descubrir cuál es la fruta oculta en la palabra secreta.')
-        palabra_al_azar, palabra_oculta = modo_facil(frutas)
+        print('Tambien puedes elegir juegar en modo EXPERTO o PRINCIPIANTE.')
+
+        opcion = input(
+            'Quieres jugar al modo EXPERTO (Si/No)? > ').lower().strip()
+
+        if opcion == 'si':
+            palabra_al_azar, palabra_oculta = modo_dificil(frutas)
+        else:
+            palabra_al_azar, palabra_oculta = modo_facil(frutas)
 
     elif grupo == '3':
         print('\nPerfecto, has decidido descubrir cuál es el color oculto en la palabra secreta.')
-        palabra_al_azar, palabra_oculta = modo_facil(colores)
+        print('Tambien puedes elegir juegar en modo EXPERTO o PRINCIPIANTE.')
+
+        opcion = input(
+            'Quieres jugar al modo EXPERTO (Si/No)? > ').lower().strip()
+
+        if opcion == 'si':
+            palabra_al_azar, palabra_oculta = modo_dificil(colores)
+        else:
+            palabra_al_azar, palabra_oculta = modo_facil(colores)
 
     else:
         print("Opción no válida. Elige un número entre 1 y 3.")
@@ -187,8 +211,10 @@ def main():
             print('\nHas descubierto una letra dentro de la palabra oculta. ¡Bien hecho!')
 
             if palabra_oculta == list(palabra_al_azar):
+                print(f'\n{" ".join(palabra_oculta)}')
                 print('\n¡Lo has conseguido! Has descifrado la palabra secreta.')
-                print(f"\nLa palabra oculta era {''.join(palabra_al_azar)}")
+                print(f"\nLa palabra oculta era \"{
+                      ''.join(palabra_al_azar)}\"")
                 break
         else:
             print('\n¡Oh no! La letra introducida no se encuentra en la palabra oculta.')
@@ -196,7 +222,7 @@ def main():
             print(f'\nTe quedan {
                   intentos} intentos para descubrir la palabra secreta.')
             print(f'\nLetras encontradas: {", ".join(
-                [letra for letra in palabra_oculta if letra != "_"])}')  # TODO Implement this line
+                [letra for letra in palabra_oculta if letra != "_"])}')
 
     if palabra_oculta != list(palabra_al_azar):
         print(f'\nLo siento, has perdido. La palabra secreta era "{
